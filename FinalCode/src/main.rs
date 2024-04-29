@@ -32,4 +32,40 @@ fn main() {
     }
 }
 
+//tests 
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use graph::Graph;
+    use breathfirstsearch::{average_distance, max_distance, mode_distance, distribution_percentage};
+
+    fn sample_graph() -> Graph {
+        let edges = vec![(0, 1), (1, 2), (2, 3), (3, 4)];
+        Graph::undirected(5, &edges)
+    }
+
+    #[test]
+    fn test_average_distance() {
+        let graph = sample_graph();
+        assert_eq!(average_distance(&graph, 1), 1.0);
+    }
+
+    #[test]
+    fn test_max_distance() {
+        let graph = sample_graph();
+        assert_eq!(max_distance(&graph, 2), 2);
+    }
+
+    #[test]
+    fn test_mode_distance() {
+        let graph = sample_graph();
+        assert_eq!(mode_distance(&graph, 2), 1);
+    }
+
+    #[test]
+    fn test_distribution_percentage() {
+        let graph = sample_graph();
+        assert_eq!(distribution_percentage(&graph, 4), 100.0);
+    }
+}
 
